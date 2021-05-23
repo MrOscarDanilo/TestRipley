@@ -1,0 +1,115 @@
+/* imagina un flujo genérico de compra de una tienda virtual, en el que se requiere:
+
+1.- El usuario tiene una lista de deseos previamente cargada y decide transferirlo al carrito/bolsa e iniciar el proceso de pago, para ello la tienda debe instanciar una clase "Car" para crear su carro con los productos del "wishList" con las siguientes cantidades:
+
+  1.1 id	-> 365; cantidad-> 4
+  1.2 id	-> 856; cantidad-> 5 
+  1.3 id	-> 432; cantidad-> 7 
+  
+2.- Justo antes de ir apagar el usuario observa otro producto "sugerido" (937) y decide sumarlo al carro mendiante un método llamado "addCar"
+
+3.- simular el pago, la tienda debera usar un servicio de "checkout" (método) para calcular el precio total de todos los productos en el carro considerando:
+
+	3.1 19% de impuestos
+  3.2 cantidad de stock (inventario disponible)
+  3.3 descuento de 3% en los productos con precios menores a 150000
+  
+4.- Como output solo se debe logear en estricto orden:
+
+	4.1 la creación del carro (productos y cantidades ordenado por precio)
+  4.2 los productos que no cumple con las cantidades de stock disponible
+  4.3 cantidad total a pagar por el cliente acompañado con el siguiente mensaje: 
+  "Gracias por comprar y ser parte dee la experiencia, el monto a pagar es: "
+  
+5.- Sube tu código a un repositorio público y envia la url, ademas generar un link en cualquier sandbox (jsfiddle o similar) donde se pueda comprobar su funcionamiento. 
+  
+ Importante: los script que entregamos son referenciales exceptuando los nombres de los método(s) y clase(s), sientete libre de resolverlo de la mejor forma que consideres necesaria, garantizando la mejor experiencia para el cliente. Sino alcanzas a terminar, pues envía lo que logres completar. :D
+*/
+
+
+
+// seeders
+
+var wishList = [
+  {
+    id: 856,
+    price: 229990,
+    name: "SAMSUNG GALAXY A51 128GB"
+  },
+  {
+    id: 365,
+    price: 869990,
+    name: "HP PAVILION GAMING 15-DK1022LA"
+  },
+  {
+    id: 432,
+    price: 149990,
+    name: "ASPIRADORA ROBOT"  
+  }
+];
+
+var suggested = 
+  {
+    id: 937,
+    price: 269990,
+    name: "LED AOC 50\" 50U6295 4K"
+  };
+
+// Inventory
+
+var stock = [
+  {
+    id: 856,
+    stock: 1,
+  },
+  {
+    id: 365,
+		stock: 4,
+  },
+  {
+    id: 432,
+		stock: 6
+  },
+  {
+    id: 937,
+		stock: 2
+  }
+];
+
+// prices
+
+var prices = [
+  {
+    id: 856,
+    price: 229990,
+  },
+  {
+    id: 365,
+    price: 869990,
+  },
+  {
+    id: 432,
+    price: 149990,
+  },
+  {
+    id: 937,
+    price: 269990,
+  }]
+
+
+////////////////////////////
+// main:
+
+class Car {
+  constructor ( items = [] ){
+    this.items = items;
+  }
+
+  addCar () {
+		return this.items;
+  }
+  
+  static checkout () {
+
+  }  
+}
