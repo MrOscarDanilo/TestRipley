@@ -81,16 +81,20 @@ class Car {
   static checkout(car) {
   	var total = 0;
     var noStock = [];
-  	car.forEach((productCar, index) => {
-    	stock.forEach( (product, index) => {
-      	if(productCar.id == product.id && productCar.quantity > product.stock) {               // Condicion para obtener items con falta de stock
-        	noStock = noStock.concat(car.splice(index, 1));                                      // Se quita item con stock insuficiente del carro y se guarda en arreglo 'noStock'
+  	car.forEach((productCar, indexCar) => {
+    	stock.forEach( (productStock, indexStock) => {
+      	if(productCar.id == productStock.id && productCar.quantity > productStock.stock) {               // Condicion para obtener items con falta de stock
+        	//noStock = noStock.concat(car.splice(indexCar, 1));                                      // Se quita item con stock insuficiente del carro y se guarda en arreglo 'noStock'
+          let productNoStock = productCar;
+          productNoStock.quantity = productNoStock.quantity - productStock.stock;
+          noStock.push(productNoStock);
+          productCar.quantity = productStock.stock;
         }
       });
     });
     car.forEach(element => {
     	if(element.price < 150000) {                                                             // Condicion para obtener items con precio menor a 150000
-      	element.price = element.price * 0.97;                                                  // Se actualiza el precio a valor correspondiente al 97% que es el total menos el 3% de descuento
+      	element.price = Math.round(element.price * 0.97);                                                  // Se actualiza el precio a valor correspondiente al 97% que es el total menos el 3% de descuento
         element.priceTotal = element.price * element.quantity;                                 // Se agrega propiedad precio total a objeto de cada item con descuento dentro del carro
         total = total + element.priceTotal;                                                    // Se suma precio total de items con descuento a precio total final.
       } else {
@@ -101,7 +105,7 @@ class Car {
     
     total = total + Math.round(total * 0.19);                                                  // Se agrega el 19% del impuesto del precio total al precio total y se realiza aproximacion.
     
-   console.log("Los Siguientes productos no poseen el stock suficiente");
+   console.log("Los Siguientes productos no poseen el stock suficiente, por lo que se cobrará solo el stock disponible de la cantidad total solicitada");
    console.log(noStock);                                                                       // Se muestra por consola productos con stock insuficiente
    console.log("Gracias por comprar y ser parte de la experiencia, el monto a pagar es: " + total);                    // Se muestra por consola mensaje de y total de compra
   }
